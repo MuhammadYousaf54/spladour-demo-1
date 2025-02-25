@@ -2267,27 +2267,24 @@ const AboutPage = () => {
                         }}
                       >
                         <AnimatePresence initial={false}>
-                            <motion.div
-                            key={currentImageIndex}
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            exit={{ y: "-100%" }}
-                            transition={{ 
-                                duration: 1.2,
-                                ease: "easeInOut"
-                            }}
-                            style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100%',
-                                backgroundImage: `url(${bimages[currentImageIndex]})`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                            }}
-                            />
-                        </AnimatePresence>
+    <motion.div
+      key={currentImageIndex}
+      initial={{ y: "100%" }}
+      animate={{ y: 0 }}
+      exit={{ y: "-100%" }}
+      transition={{ duration: 1.2, ease: "easeInOut" }}
+      className="absolute top-0 left-0 w-full h-full"
+    >
+      <Image
+        src={bimages[currentImageIndex]}
+        alt={`Image ${currentImageIndex}`}
+        layout="fill"
+        objectFit="cover"
+        quality={100} // Ensures HD image
+        className="rounded-[25px]"
+      />
+    </motion.div>
+  </AnimatePresence>
                   
                         {/* Overlay */}
                         <Box
