@@ -43,6 +43,7 @@ const PortfolioPage = () => {
     //     "/images/Portfolio/practicality/image3.jpg",
 
     //   ];
+ 
 
     // Mobile view (max-width 768px)
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });

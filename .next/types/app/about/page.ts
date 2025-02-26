@@ -1,4 +1,4 @@
-// File: C:\Users\MUHAMMAD YOUSAF\Desktop\splendours\app\about\page.tsx
+// File: C:\Users\MUHAMMAD YOUSAF\Desktop\New folder (2)\spladour-demo-1\app\about\page.tsx
 import * as entry from '../../../../app/about/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

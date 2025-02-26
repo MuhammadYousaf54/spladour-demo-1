@@ -4,20 +4,14 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-const carousalImages: string[] = [
-  "/images/Portfolio/Inspiration/CarouselImages/image1.png",
-  "/images/Portfolio/Inspiration/CarouselImages/image2.png",
-  "/images/Portfolio/Inspiration/CarouselImages/image3.png",
-  "/images/Portfolio/Inspiration/CarouselImages/image4.png",
-  "/images/Portfolio/Inspiration/CarouselImages/image5.png",
-];
-
 interface OverlappingImageSliderProps {
+  images: string[];
   className?: string;
   scaleEffect: boolean;
 }
 
 const OverlappingImageSlider2: React.FC<OverlappingImageSliderProps> = ({ 
+  images,
   className = "",
   scaleEffect 
 }) => {
@@ -25,15 +19,15 @@ const OverlappingImageSlider2: React.FC<OverlappingImageSliderProps> = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % carousalImages.length);
+      setIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 2000); // Change image every 2 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]); // Fix dependency issue
 
   // Determine slide direction based on current index
   const getSlideDirection = (currentIndex: number): number => {
-    return currentIndex === carousalImages.length - 1 ? 1 : -1;
+    return currentIndex === images.length - 1 ? 1 : -1;
   };
 
   return (
@@ -50,14 +44,13 @@ const OverlappingImageSlider2: React.FC<OverlappingImageSliderProps> = ({
         className="absolute w-full h-full object-cover rounded-2xl"
       >
         <Image
-  src={carousalImages[index]}
-  alt={`Slider image ${index + 1}`}
-  width={1920}  // HD width
-  height={1080} // HD height
-  className="rounded-2xl object-cover w-full h-full"
-  priority={index === 0}
-/>
-
+          src={images[index]}
+          alt={`Slider image ${index + 1}`}
+          width={1920}  
+          height={1080} 
+          className="rounded-2xl object-cover w-full h-full"
+          priority={index === 0}
+        />
       </motion.div>
 
       <AnimatePresence>
@@ -70,16 +63,14 @@ const OverlappingImageSlider2: React.FC<OverlappingImageSliderProps> = ({
           transition={{ duration: 0.8, ease: "easeIn" }}
           className="absolute w-full h-full"
         >
-                
-                <Image
-  src={carousalImages[index]}
-  alt={`Slider image ${index + 1}`}
-  width={1920}  // HD width
-  height={1080} // HD height
-  className="rounded-2xl object-cover w-full h-full"
-  priority={index === 0}
-/>
-
+          <Image
+            src={images[index]}
+            alt={`Slider image ${index + 1}`}
+            width={1920}  
+            height={1080} 
+            className="rounded-2xl object-cover w-full h-full"
+            priority={index === 0}
+          />
         </motion.div>
       </AnimatePresence>
     </div>
